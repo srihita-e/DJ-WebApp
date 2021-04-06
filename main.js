@@ -11,7 +11,43 @@ function draw() {
 
     fill("#FF0000");
     stroke("#FF0000");
+
+    if(scorerightWrist > 0.2)
+{
     
+    circle(rightWristX, rightWristY);
+
+    if(rightWristY > 0 && rightWristY<= 100)
+    {
+        document.getElementById("speed").innerHTML = "speed = 0.5";
+        song.rat(0.5);
+    }
+
+    else if(rightWristY > 100 && rightWristY <= 200)
+    {
+        document.getElementById("speed").innerHTML = "Speed = 1x";
+        song.rate(1);
+    }
+
+    else if(rightWristY > 200 && rightWristY <= 300)
+    {
+        document.getElementById("speed").innerHTML = "Speed = 1.5x";
+        song.rate(1.5);
+    }
+
+    else if(rightWristY > 300 && rightWristY <= 400)
+    {
+        document.getElementById("speed").innerHTML = "Speed = 2x";
+        song.rate(2);
+    }
+
+    else if(rightWristY > 400 && rightWristY <= 500)
+    {
+        document.getElementById("speed").innerHTML = "Speed = 2x";
+        song.rate(2);
+    }
+}
+
     if(scoreleftWrist > 0.2)
     {
         circle(leftWristX, leftWristY, 20);
@@ -57,6 +93,7 @@ function gotPoses(results)
     if(results.length > 0)
     {
         console.log(results);
+        scoreRightWrist = results[0].pose.keypoints[10].score;
         scoreLeftWrist = results[0].pose.keypoints[9].score;
         console.log("scoreLeftWrist =" + scoreLeftWrist);
 
